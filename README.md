@@ -1,1 +1,1 @@
-# Hash-Project-C
+# Hash-Project-C++
