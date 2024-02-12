@@ -17,8 +17,6 @@ int main (void) {
 
 	Classroom classroom(5,"I","D", MAX_STUDENTS);
 
-    std::cout << classroom.showStudents();
-
 	int s;
 
 	do 
@@ -99,11 +97,9 @@ int main (void) {
 
 				std::cout << "\n\n --- FUNZIONE MOSTRA ELENCO STUDENTI ---\n\n";
 
-                std::cout << classroom.showStudents();
-
 				if(!classroom.showStudents())
 					std::cout << "\n\n  [NESSUNO STUDENTE PER QUESTA CLASSE...] \n\n";
-
+                
 				break;
 			}
 

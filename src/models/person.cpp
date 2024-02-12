@@ -50,10 +50,11 @@ bool Person::setName(char* name)
 	return false;
 }
 
-bool Person::setSurname(char surname[])
+bool Person::setSurname(char* surname)
 {
 	if (MyRegex::name(surname))
     {
+        this->surname = new char[strlen(surname)+1];
         strcpy(this->surname, surname);
 		return true;
 	}

@@ -20,7 +20,7 @@ Student::Student(char name[], char surname[],  char tel[], char email[], bool pc
 	setStage(stage);
 }
 
-bool Student::setTel(char tel[]) 
+bool Student::setTel(char* tel) 
 {
 	if (MyRegex::tel(tel) == true)
     {
@@ -31,7 +31,7 @@ bool Student::setTel(char tel[])
 		return false;
 }
 
-bool Student::setEmail(char email[])
+bool Student::setEmail(char* email)
 {
 	if (MyRegex::email(email) == true)
     {
@@ -129,17 +129,15 @@ bool Student::input()
 	s5 = (std::string)((char*)s5.c_str());
 	s6 = (std::string)((char*)s6.c_str());
 
-	setPc((s5 == "SI" || s5 == "S") ? 1 : 0);
-	setStage((s6 == "SI" || s6 == "S") ? 1 : 0);
+	setPc((s5 == "SI" || s5 == "S"));
+	setStage((s6 == "SI" || s6 == "S"));
 
-	bool input_valid[] = 
-    {
+    bool input_valid[4];
 
-	   setName((char*)s1.c_str()),
-	   setSurname((char*)s2.c_str()),
-	   setTel((char*)s3.c_str()),
-	   setEmail((char*)s4.c_str())
-	};
+	input_valid[0] = setName((char*)s1.c_str());
+    input_valid[1] = setSurname((char*)s2.c_str());
+    input_valid[2] = setTel((char*)s3.c_str());
+    input_valid[3] = setEmail((char*)s4.c_str());
 
 	return input_valid[0] && input_valid[1] && input_valid[2] && input_valid[3];
 }
