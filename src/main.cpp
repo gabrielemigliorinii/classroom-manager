@@ -1,6 +1,7 @@
 #include "../include/models/myfile.h"
 #include "../include/models/student.h"
 #include "../include/models/classroom.h"
+#include "../include/models/person.h"
 
 #include <iostream>
 
@@ -8,13 +9,15 @@ int main (void) {
 
 	const unsigned int MAX_STUDENTS = 31;
 
-    const char STUDENTS_FILENAME[] = "ELENCO_CLASSE.dat";
-    const char INDEX_FILENAME[] = "FILE_INDICE.dat";
+    const char STUDENTS[] = "../../data/STUDENTS.dat";
+    const char INDEX[] = "../../data/INDEX.dat";
 
 	// Preparazione di un file con records di tipo 'Studente'
-	MyFile::init<Student>(STUDENTS_FILENAME, MAX_STUDENTS, false, '$');
+	MyFile::init<Student>(STUDENTS, MAX_STUDENTS, false, '$');
 
 	Classroom classroom(5,"I","D", MAX_STUDENTS);
+
+    std::cout << classroom.showStudents();
 
 	int s;
 
@@ -95,6 +98,8 @@ int main (void) {
 			case 1: {
 
 				std::cout << "\n\n --- FUNZIONE MOSTRA ELENCO STUDENTI ---\n\n";
+
+                std::cout << classroom.showStudents();
 
 				if(!classroom.showStudents())
 					std::cout << "\n\n  [NESSUNO STUDENTE PER QUESTA CLASSE...] \n\n";

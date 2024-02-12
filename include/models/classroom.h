@@ -13,11 +13,11 @@ class Classroom
         int numberOfStudents;
         int MAX_STUDENTS;
 
-        static char* INDEX_FILENAME;
-        static char* STUDENTS_FILENAME;
-
     public:
 
+        static char* INDEX_FILENAME;
+        static char* STUDENTS_FILENAME;
+        
         Classroom(int, std::string, std::string, int);
         int getMax();
         bool addStudent(Student);

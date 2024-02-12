@@ -5,13 +5,15 @@ class IndexFileRow
 {
     private:
 
-		char key[20];
+		char* key;
 		int value;
 
 	public:
 
 		IndexFileRow(char[], int);
 		IndexFileRow();
+        void setKey(char[]);
+        void setVal(int);
 		char* getKey();
 		int getVal();
 };

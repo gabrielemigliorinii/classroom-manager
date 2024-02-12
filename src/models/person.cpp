@@ -8,11 +8,7 @@
 char* Person::DEFAULT_NAME = "DEFAULT_NAME";
 char* Person::DEFAULT_SURNAME = "DEFAULT_SURNAME";
 
-Person::Person()
-{
-    setName(const_cast<char*>(DEFAULT_NAME));
-    setSurname(const_cast<char*>(DEFAULT_SURNAME));
-}
+Person::Person() : name(Person::DEFAULT_NAME), surname(Person::DEFAULT_SURNAME) {}
 
 Person::Person(char name[], char surname[])
 {

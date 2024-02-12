@@ -5,6 +5,13 @@
 #include <iostream>
 #include <cstring>
 
+char* Student::DEFAULT_EMAIL = "DEFAULT_EMAIL";
+char* Student::DEFAULT_TEL = "DEFAULT_TEL";
+char* Student::DEFAULT_PC = false;
+char* Student::DEFAULT_STAGE = false;
+
+Student::Student() : Person(), tel(Student::DEFAULT_TEL), email(Student::DEFAULT_EMAIL), pc(Student::DEFAULT_PC), stage(Student::DEFAULT_STAGE) {}
+
 Student::Student(char name[], char surname[],  char tel[], char email[], bool pc, bool stage) : Person(name, surname) 
 {
 	setTel(tel);
@@ -13,18 +20,11 @@ Student::Student(char name[], char surname[],  char tel[], char email[], bool pc
 	setStage(stage);
 }
 
-Student::Student() : Person()
-{
-    setTel("DEFAULT_TEL");
-    setEmail("DEFAULT_EMAIL");
-    setPc(NULL);
-    setStage(NULL);
-}
-
 bool Student::setTel(char tel[]) 
 {
 	if (MyRegex::tel(tel) == true)
     {
+        this->tel = new char[strlen(tel)+1];
 		strcpy(this->tel, tel);
 		return true;
 	}else
@@ -35,6 +35,7 @@ bool Student::setEmail(char email[])
 {
 	if (MyRegex::email(email) == true)
     {
+        this->email = new char[strlen(email)+1];
 		strcpy(this->email,email);
 		return true;
 	}
@@ -125,8 +126,8 @@ bool Student::input()
     std::cout << " - Stage ? (SI/NO): ";
 	std::getline(std::cin, s6);
 
-	s5 = (std::string)strupr((char*)s5.c_str());
-	s6 = (std::string)strupr((char*)s6.c_str());
+	s5 = (std::string)((char*)s5.c_str());
+	s6 = (std::string)((char*)s6.c_str());
 
 	setPc((s5 == "SI" || s5 == "S") ? 1 : 0);
 	setStage((s6 == "SI" || s6 == "S") ? 1 : 0);

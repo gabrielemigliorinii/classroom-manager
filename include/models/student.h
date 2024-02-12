@@ -8,10 +8,15 @@ class Student : public Person {
 
     private:
 
-        char tel[16];
-        char email[25];
+        char* tel;
+        char* email;
         bool pc;
         bool stage;
+
+        static char* DEFAULT_TEL;
+        static char* DEFAULT_EMAIL;
+        static char* DEFAULT_PC;
+        static char* DEFAULT_STAGE;
 
     public:
 

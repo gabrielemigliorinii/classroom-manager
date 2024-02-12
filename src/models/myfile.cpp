@@ -13,7 +13,6 @@ void MyFile::clear(const char filename[])
 	file.close();
 }
 
-
 bool MyFile::exists(const char filename[])
 {
     std::ifstream file(filename);
@@ -32,8 +31,8 @@ void MyFile::sortIndexFile(const char filename[], int indexP, int indexU)
 {
 	std::string pivot, s1, s2;
 
-	if (indexP < indexU){
-
+	if (indexP < indexU)
+    {
 		IndexFileRow ir;
 		MyFile::read(filename, indexP, ir);
 		std::string pivot((std::string)ir.getKey());
@@ -41,10 +40,10 @@ void MyFile::sortIndexFile(const char filename[], int indexP, int indexU)
 		int i = indexP-1;
 		int j = indexU+1;
 
-		while (i < j) {
-
-			do {
-
+		while (i < j) 
+        {
+			do 
+            {
 				j--;
 				IndexFileRow rx;
 				MyFile::read(filename, j, rx);
@@ -52,8 +51,8 @@ void MyFile::sortIndexFile(const char filename[], int indexP, int indexU)
 
 			} while (s1 > pivot);
 
-			do {
-
+			do 
+            {
 				i++;
 				IndexFileRow ry;
 				MyFile::read(filename, i, ry);
