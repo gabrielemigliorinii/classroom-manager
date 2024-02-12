@@ -7,8 +7,8 @@ class Person
 
 		char* name;
 		char* surname;
-        static const char* DEFAULT_NAME;
-        static const char* DEFAULT_SURNAME;
+        static char* DEFAULT_NAME;
+        static char* DEFAULT_SURNAME;
 
 	public:
 

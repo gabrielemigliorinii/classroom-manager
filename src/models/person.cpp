@@ -1,12 +1,12 @@
-
 #include "../../include/models/person.h"
 #include "../../include/models/myregex.h"
+
 #include <string.h>
 #include <string>
 #include <cstring>
 
-const char* Person::DEFAULT_NAME = "DEFAULT_NAME";
-const char* Person::DEFAULT_SURNAME = "DEFAULT_SURNAME";
+char* Person::DEFAULT_NAME = "DEFAULT_NAME";
+char* Person::DEFAULT_SURNAME = "DEFAULT_SURNAME";
 
 Person::Person()
 {

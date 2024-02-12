@@ -7,9 +7,14 @@ set(CMAKE_BUILD_TYPE Debug)
 
 add_executable(main
     src/main.cpp
-    src/models/person.cpp
+    src/models/myfile.cpp
+    src/models/indexfilerow.cpp
+    src/models/hash.cpp
     src/models/myregex.cpp
+    src/models/person.cpp
+    src/models/student.cpp
+    src/models/classroom.cpp
 )
 
-include_directories(include)
+include_directories(include/models)
 include_directories(src)
