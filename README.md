@@ -49,7 +49,7 @@ The project uses C++14 features.
 
     ```
     cd build/debug
-    main.exe ../../data/STUDENTS.dat ../../data/INDEX.dat 31
+    main.exe [STUDENTS_FILEPATH] [INDEX_FILEPATH] [MAX_NUMBER_OF_STUDENTS]
     ```
 
 ### Linux
@@ -70,7 +70,7 @@ The project uses C++14 features.
 
     ```bash
     cd build/debug
-    ./main ../../data/STUDENTS.dat ../../data/INDEX.dat 31
+    ./main [STUDENTS_FILEPATH] [INDEX_FILEPATH] [MAX_NUMBER_OF_STUDENTS]
     ```
 
 ## Functionality
