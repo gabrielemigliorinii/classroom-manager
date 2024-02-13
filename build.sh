@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Build config
-# cmake -S . -B build
+ cmake -S . -B build
 
 # Project compile
 cmake --build build
@@ -12,5 +12,5 @@ cmake --build build
 # Permission
 #chmod +x build_and_run.sh
 
-# Execute of this file
+# Execution of this file
 # ./build_and_run.sh

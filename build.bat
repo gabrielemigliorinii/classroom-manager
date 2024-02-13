@@ -1,7 +1,7 @@
 @echo off
 
 rem Build config
-rem cmake -S . -B build
+cmake -S . -B build
 
 rem Project compile
 cmake --build build

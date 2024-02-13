@@ -1,36 +1,85 @@
-# Classroom Manager
+# C++ Classroom Manager Project
 
-Classroom Manager è un progetto in C++ che gestisce gli studenti all'interno di una classe. Consente di memorizzare e gestire le informazioni degli studenti, come nome e cognome, e offre funzionalità di gestione della classe.
+This C++ project is a simple classroom manager that allows you to perform various operations related to students in a classroom. The program uses file handling, hashing, and regular expressions to manage student data efficiently.
 
-## Struttura del Progetto
+## Prerequisites
 
-Il progetto è suddiviso in diverse classi per una migliore organizzazione:
+Ensure you have the following tools installed on your system:
 
-- `Person`: Rappresenta uno studente con nome e cognome.
-- `MyRegex`: Classe di utilità per la validazione delle stringhe.
-- ...
+- C++ compiler (e.g., [g++](https://gcc.gnu.org/))
+- [CMake](https://cmake.org/)
 
-## Struttura del Codice Sorgente
+The project uses C++14 features.
 
-Il codice sorgente è organizzato nelle seguenti directory:
+## Project Structure
 
-- `src`: Contiene i file sorgente principali, tra cui `main.cpp`.
-- `src/models`: Contiene le implementazioni delle classi.
-- `include`: Contiene i file di intestazione.
-- `include/models`: Contiene i file di intestazione per le classi.
+- `main.cpp`: The main entry point of the program.
+- `myfile.h`: Class definition for handling file operations.
+- `myfile.cpp`: Implementation of file handling methods.
+- `hash.h`: Class definition for hash functions.
+- `hash.cpp`: Implementation of hash functions.
+- `indexfilerow.h`: Class definition for index file rows.
+- `indexfilerow.cpp`: Implementation of index file row methods.
+- `myregex.h`: Class definition for regular expressions.
+- `myregex.cpp`: Implementation of regular expression methods.
+- `person.h`: Class definition for the base person class.
+- `person.cpp`: Implementation of person class methods.
+- `student.h`: Class definition for the student class, derived from the person class.
+- `student.cpp`: Implementation of student class methods.
+- `classroom.h`: Class definition for the class management.
+- `classroom.cpp`: Implementation of class management methods.
 
-## Compilazione del Progetto
+## Build and Run
 
-Il progetto utilizza CMake per semplificare la compilazione. Segui questi passaggi:
+### Windows
 
-1. Assicurati di avere CMake installato nel tuo sistema.
-2. Crea una directory `build` nella radice del progetto.
-3. Da un terminale, posizionati nella directory `build`.
-4. Esegui `cmake ..` per configurare il progetto.
-5. Esegui `cmake --build .` per compilare il progetto.
+1. Configure the build using CMake:
 
-Il file eseguibile `main` verrà creato nella directory `build/debug`.
+    ```
+    cmake -S . -B build
+    ```
 
-## Utilizzo del Progetto
+2. Compile the project:
 
-Puoi eseguire il programma risultante per gestire gli studenti nella classe. Assicurati di seguire le istruzioni fornite dal programma.
+    ```
+    cmake --build build
+    ```
+
+3. Execute the application:
+
+    ```
+    cd build/debug
+    main.exe ../../data/STUDENTS.dat ../../data/INDEX.dat 31
+    ```
+
+### Linux
+
+1. Configure the build using CMake:
+
+    ```bash
+    cmake -S . -B build
+    ```
+
+2. Compile the project:
+
+    ```bash
+    cmake --build build
+    ```
+
+3. Execute the application:
+
+    ```bash
+    cd build/debug
+    ./main ../../data/STUDENTS.dat ../../data/INDEX.dat 31
+    ```
+
+## Functionality
+
+The program allows you to perform the following operations:
+
+1. Display the list of students in the class.
+2. Add a new student to the class.
+3. Search for a student by name and surname.
+4. Search for a student by telephone number.
+
+Follow the on-screen instructions to navigate through the options.
