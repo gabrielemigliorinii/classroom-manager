@@ -5,19 +5,33 @@
 
 #include <iostream>
 
-int main (void) {
+int main (int argc, char* argv[]) {
 
-	const unsigned int MAX_STUDENTS = 31;
+    const char* STUDENTS_FILENAME;
+    const char* INDEX_FILENAME;
+    unsigned int MAX_STUDENTS;
 
-    const char STUDENTS[] = "../../data/STUDENTS.dat";
-    const char INDEX[] = "../../data/INDEX.dat";
+    if (argc == 4)
+    {
+        STUDENTS_FILENAME = argv[1];
+        INDEX_FILENAME = argv[2];
+        MAX_STUDENTS = std :: stoi (argv[3]);
+    }
+    else
+    {
+        STUDENTS_FILENAME = "../../data/STUDENTS.dat";
+        INDEX_FILENAME = "../../data/INDEX.dat";
+        MAX_STUDENTS = 31;
+    }
 
 	// Preparazione di un file con records di tipo 'Studente'
-	MyFile::init<Student>(STUDENTS, MAX_STUDENTS, false, '$');
+	MyFile::init<Student>(STUDENTS_FILENAME, MAX_STUDENTS, false, '$');
 
-	Classroom classroom(5,"I","D", MAX_STUDENTS);
+	Classroom classroom(5,"I","D", MAX_STUDENTS, STUDENTS_FILENAME, INDEX_FILENAME);
 
 	int s;
+
+    system("CLS");
 
 	do 
     {
@@ -49,13 +63,14 @@ int main (void) {
 					bool input = false;
 					Student student;
 
-					while (!input)
+					do
                     {
 						input = student.input();
 						
                         if (!input)
 							std::cout << "\n\n  [INSERITI VALORI NON VALIDI, PREMERE UN TASTO PER CONTINUARE...]\n\n ";
-					}
+
+					} while (input == false);
 
 					if (classroom.addStudent(student))
 						std::cout << "\n\n  [STUDENTE AGGIUNTO CORRETTAMENTE ...] \n\n";
@@ -82,7 +97,7 @@ int main (void) {
 				std::cout << " - Inserire cognome: ";
 				std::cin.getline(surname, 15);
 
-				Person person(name, surname);
+				Person person(strlwr(name), strlwr(surname));
 				Student student;
 
 				if (classroom.findStudent(person, student))
@@ -113,7 +128,8 @@ int main (void) {
 				std::cin.ignore();
 				std::cout << " - Inserire numero telefonico: [+39] ";
 
-				getline(std::cin, tel); tel = "+39" + tel;
+				getline(std::cin, tel); 
+                tel = "+39" + tel;
 
 				if (classroom.findStudentByTel(tel, s))
 					classroom.showStudent(s);
@@ -134,6 +150,7 @@ int main (void) {
 		}
 
 	} while (s != 0);
+
 
 	return 0;
 }

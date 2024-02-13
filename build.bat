@@ -8,4 +8,4 @@ cmake --build build
 
 rem Esegui l'applicazione
 cd build/debug
-main.exe
+main.exe ../../data/STUDENTS.dat ../../data/INDEX.dat 31

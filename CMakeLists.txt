@@ -16,5 +16,10 @@ add_executable(main
     src/models/classroom.cpp
 )
 
-include_directories(include/models)
-include_directories(src)
+include_directories(include)
+
+add_custom_target(run
+    COMMAND main STUDENTS_FILENAME INDEX_FILENAME MAX_STUDENTS
+    DEPENDS main
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+)

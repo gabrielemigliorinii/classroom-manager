@@ -10,12 +10,12 @@ class IndexFileRow
 
 	public:
 
-		IndexFileRow(char[], int);
+		IndexFileRow(char*, int);
 		IndexFileRow();
-        void setKey(char[]);
-        void setVal(int);
+        void setKey(char*);
 		char* getKey();
-		int getVal();
+        void setValue(int);
+		int getValue();
 };
 
 #endif 

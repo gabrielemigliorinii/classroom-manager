@@ -9,16 +9,17 @@ class Classroom
     private:
 
         int year;
-        std::string address, section;
+        std::string address; 
+        std::string section;
         int numberOfStudents;
         int MAX_STUDENTS;
 
+        const char* STUDENTS_FILENAME;
+        const char* INDEX_FILENAME;
+
     public:
 
-        static char* INDEX_FILENAME;
-        static char* STUDENTS_FILENAME;
-        
-        Classroom(int, std::string, std::string, int);
+        Classroom(int, std::string, std::string, int, const char*, const char*);
         int getMax();
         bool addStudent(Student);
         bool findStudent(Person, Student&);

@@ -2,11 +2,10 @@
 
 #include <cstring>
 
-IndexFileRow::IndexFileRow(char key[], int value)
+IndexFileRow::IndexFileRow(char* key, int value)
 {
     setKey(key);
-    strcpy(this->key,key);
-    this->value = value;
+    setValue(value);
 }
 
 IndexFileRow::IndexFileRow() : key("DEFAULT_KEY"), value(-1) {}
@@ -19,17 +18,17 @@ void IndexFileRow::setKey(char* key)
 
 char* IndexFileRow::getKey()
 { 
-    return key; 
+    return this->key; 
 }
 
-void IndexFileRow::setVal(int value)
+void IndexFileRow::setValue(int value)
 {
     this->value = value;
 }
 
-int IndexFileRow::getVal()
+int IndexFileRow::getValue()
 { 
-    return value; 
+    return this->value; 
 }
 
 

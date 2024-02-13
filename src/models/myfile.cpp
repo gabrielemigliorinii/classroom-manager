@@ -81,8 +81,9 @@ int MyFile::binarySearchIndexFile(const char filename[], std::string target, int
 
   		MyFile::read(filename, imid, ir);
   		s = (std::string)ir.getKey();
-
-        if (s == target) return imid;
+    
+        if (s == target) 
+            return imid;
 
   		MyFile::read(filename, imid, ir);
   		s = (std::string)ir.getKey();

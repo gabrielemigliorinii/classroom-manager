@@ -8,15 +8,15 @@
 #include <iostream>
 #include <string>
 
-const char INDEX[] = "../../data/INDEX.dat";
-const char STUDENTS[] = "../../data/STUDENTS.dat";
-
-Classroom::Classroom(int year, std::string address, std::string section, int MAX_STUDENTS)
+Classroom::Classroom(int year, std::string address, std::string section, int MAX_STUDENTS, const char* STUDENTS_FILENAME, const char* INDEX_FILENAME)
 {
+    this->STUDENTS_FILENAME = STUDENTS_FILENAME;
+    this->INDEX_FILENAME = INDEX_FILENAME;
+
 	this->year = year;
 	this->address = address;
 	this->section = section;
-	this->numberOfStudents = MyFile::exists(INDEX) ? MyFile::countRecords<IndexFileRow>(INDEX) : 0;
+	this->numberOfStudents = MyFile::exists(INDEX_FILENAME) ? MyFile::countRecords<IndexFileRow>(INDEX_FILENAME) : 0;
 	this->MAX_STUDENTS = MAX_STUDENTS;
 }
 
@@ -26,18 +26,18 @@ bool Classroom::addStudent(Student student)
 
 	int position = Hash::function(person.getNameSurname(), MAX_STUDENTS);
 
-	const bool empty = MyFile::positionOK<Student>(STUDENTS, position, '$');
+	const bool empty = MyFile::positionOK<Student>(STUDENTS_FILENAME, position, '$');
 
 	if (empty == false)  // collisione
-		position = Hash::handleCollision(STUDENTS, student); // appende studente e ritorna posizione
+		position = Hash::handleCollision(STUDENTS_FILENAME, student); // append studente e return posizione
 	else
-		MyFile::write(STUDENTS, position, student);
+		MyFile::write(STUDENTS_FILENAME, position, student);
 
 	numberOfStudents++;
-
+    
 	IndexFileRow keyvalue(student.getTel(), position);
-	MyFile::append(INDEX, keyvalue);
-	MyFile::sortIndexFile(INDEX, 0, MyFile::countRecords<IndexFileRow>(INDEX)-1);
+	MyFile::append(INDEX_FILENAME, keyvalue);
+	MyFile::sortIndexFile(INDEX_FILENAME, 0, MyFile::countRecords<IndexFileRow>(INDEX_FILENAME)-1);
 
 	return true;
 }
@@ -68,27 +68,32 @@ bool Classroom::findStudent(Person person, Student &student)
 	bool found = false;
 	int position = Hash::function(person.getNameSurname(), MAX_STUDENTS);
 
-	if (!MyFile::positionOK<Student>(STUDENTS, position, '$')){
 	// se il record alla posizione 'position' inizia con un carattere diverso da '$' (char speciale) =>
+	if (!MyFile::positionOK<Student>(STUDENTS_FILENAME, position, '$'))
+    {
 
 		Person p;
-		MyFile::read(STUDENTS, position, student);
+		MyFile::read(STUDENTS_FILENAME, position, student);
 
-		p.setName(student.getName()); p.setSurname(student.getSurname());
+		p.setName(student.getName()); 
+        p.setSurname(student.getSurname());
 
 		found = (person == p);
 
 		if (!found){  // in caso di collisione
 
 			position = MAX_STUDENTS;
-			const int N_RECORDS = MyFile::countRecords<Student>(STUDENTS);
+			const int N_RECORDS = MyFile::countRecords<Student>(STUDENTS_FILENAME);
 
 			// ricerca sequenzionale tra le collisioni il cui numero è: (N_RECORDS - position)
 			while (!found && position < N_RECORDS)
             {
-				MyFile::read(STUDENTS, position, student);
-				p.setName(student.getName()); p.setSurname(student.getSurname());
-				found = (person == p);
+				MyFile::read(STUDENTS_FILENAME, position, student);
+				
+                p.setName(student.getName()); 
+                p.setSurname(student.getSurname());
+				
+                found = (person == p);
 
 				position++;
 			}
@@ -105,14 +110,14 @@ bool Classroom::findStudentByTel(std::string tel, Student &s)
 
 	if (this->numberOfStudents > 0){
 
-		pos = MyFile::binarySearchIndexFile(INDEX, tel, 0, this->numberOfStudents-1);
+		pos = MyFile::binarySearchIndexFile(INDEX_FILENAME, tel, 0, this->numberOfStudents-1);
 
 		if (pos > -1){
 
 			IndexFileRow ir;
-			MyFile::read(INDEX, pos, ir);
-			pos = ir.getVal();
-			MyFile::read(STUDENTS, pos, s);
+			MyFile::read(INDEX_FILENAME, pos, ir);
+			pos = ir.getValue();
+			MyFile::read(STUDENTS_FILENAME, pos, s);
 			found = true;
 		}
 	}
@@ -129,17 +134,19 @@ bool Classroom::showStudents()
 {
 	Student s;
 	IndexFileRow ir;
-	int position = -1;  
+	int position = -1; 
 
-	for (int i = 0; i<this->numberOfStudents; i++){
+	for (int i = 0; i<this->numberOfStudents; i++)
+    {
+		MyFile::read(INDEX_FILENAME, i, ir);
 
-		MyFile::read(INDEX, i, ir);
-		position = ir.getVal();
+		position = ir.getValue();
 		
         if (position < 0) 
             continue;
-		
-        MyFile::read(STUDENTS, position, s);
+
+        MyFile::read(STUDENTS_FILENAME, position, s);
+
 		s.show(i+1);
 	}
 

@@ -103,7 +103,6 @@ bool Student::getStage()
 
 bool Student::input()
 {
-
 	std::string s1, s2, s3, s4, s5, s6;
 
 	std::cin.ignore();
@@ -115,7 +114,8 @@ bool Student::input()
 	std::getline(std::cin, s2);
 	
     std::cout << " - Inserire telefono: [+39] ";
-	std::getline(std::cin, s3); s3 = "+39"+s3;
+	std::getline(std::cin, s3); 
+    s3 = "+39"+s3;
 	
     std::cout << " - Inserire email: ";
 	std::getline(std::cin, s4);
@@ -126,18 +126,18 @@ bool Student::input()
     std::cout << " - Stage ? (SI/NO): ";
 	std::getline(std::cin, s6);
 
-	s5 = (std::string)((char*)s5.c_str());
-	s6 = (std::string)((char*)s6.c_str());
+	s5 = (std::string)(strlwr((char*)s5.c_str()));
+	s6 = (std::string)(strlwr((char*)s6.c_str()));
 
-	setPc((s5 == "SI" || s5 == "S"));
-	setStage((s6 == "SI" || s6 == "S"));
+	setPc((s5 == "si" || s5 == "s"));
+	setStage((s6 == "si" || s6 == "s"));
 
     bool input_valid[4];
 
-	input_valid[0] = setName((char*)s1.c_str());
-    input_valid[1] = setSurname((char*)s2.c_str());
+	input_valid[0] = setName(strlwr((char*)s1.c_str()));
+    input_valid[1] = setSurname(strlwr((char*)s2.c_str()));
     input_valid[2] = setTel((char*)s3.c_str());
-    input_valid[3] = setEmail((char*)s4.c_str());
+    input_valid[3] = setEmail(strlwr((char*)s4.c_str()));
 
 	return input_valid[0] && input_valid[1] && input_valid[2] && input_valid[3];
 }

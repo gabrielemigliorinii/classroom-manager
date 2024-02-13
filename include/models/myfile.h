@@ -55,8 +55,6 @@ class MyFile
             file.close();
         }
 
-
-
         template <typename Record> 
         static int countRecords(const char filename[])
         {
