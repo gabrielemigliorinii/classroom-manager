@@ -9,9 +9,9 @@ class MyRegex
         static const char* PATTERN_TEL;
 
 	public:
-		static bool name(char[]);
-		static bool email(char[]);
-		static bool tel(char[]);
+		static bool name(char*);
+		static bool email(char*);
+		static bool tel(char*);
 };
 
 #endif

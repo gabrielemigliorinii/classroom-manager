@@ -7,10 +7,10 @@ class Hash
 {
     public:
 
-        static int function(char[], int);
+        static int function(char*, int);
 
         template <typename T> 
-        static int handleCollision(const char filename[], T t)
+        static int handleCollision(const char* filename, T t)
         {
             // append del record che ha avuto una collisione
             MyFile::append(filename, t);	 			

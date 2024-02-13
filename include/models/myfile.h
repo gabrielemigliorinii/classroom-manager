@@ -8,14 +8,14 @@ class MyFile
 {
 	public:
 
-		static void clear(const char[]);
-		static bool exists(const char[]);
-		static void create(const char[]);
-		static void sortIndexFile(const char[], int, int);   // quick sort index file
-		static int binarySearchIndexFile(const char[], std::string, int, int); // ricerca binaria in un file indice
+		static void clear(const char*);
+		static bool exists(const char*);
+		static void create(const char*);
+		static void sortIndexFile(const char*, int, int);   // quick-sort index file
+		static int binarySearchIndexFile(const char*, std::string, int, int); 
 
         template <typename Record> 
-        static bool write(const char filename[], int position, Record record)
+        static bool write(const char* filename, int position, Record record)
         {
             if (position < 0) 
                 return false;
@@ -33,7 +33,7 @@ class MyFile
         }
 
         template <typename Record> 
-        static bool read(const char filename[], int position, Record &record)
+        static bool read(const char* filename, int position, Record &record)
         {
             if (!exists(filename) || position < 0) return false;
 
@@ -47,7 +47,7 @@ class MyFile
         }
 
         template <typename Record> 
-        static void append(const char filename[], Record record)
+        static void append(const char* filename, Record record)
         {
             std::ofstream file;
             file.open(filename, std::ios::app|std::ios::binary);
@@ -56,7 +56,7 @@ class MyFile
         }
 
         template <typename Record> 
-        static int countRecords(const char filename[])
+        static int countRecords(const char* filename)
         {
             std::ifstream file;
             file.open(filename, std::ios::in|std::ios::binary);
@@ -66,14 +66,14 @@ class MyFile
             return N_RECORDS;
         }
 
-
         template <typename Record> 
-        static void init(const char filename[], int N_RECORDS, bool override, char specialChar)
+        static void init(const char* filename, int N_RECORDS, bool override, char specialChar)
         {
-            if (override) 
-                MyFile::clear(filename);
-            else if (exists(filename)) 
+            if (exists(filename) && override == false)
                 return;
+            
+            if (override)
+                MyFile::clear(filename);
 
             std::ofstream file;
             file.open(filename, std::ios::app|std::ios::binary);
@@ -86,7 +86,7 @@ class MyFile
 
 
         template <typename Record> 
-        static bool positionOK(const char filename[], int position, char spc)
+        static bool positionOK(const char* filename, int position, char spc)
         {
             char c;
             MyFile::read(filename, position*sizeof(Record), c);
@@ -95,7 +95,7 @@ class MyFile
         }
 
         template <typename Record> 
-        static void swapRecords(const char filename[], int pos1, int pos2)
+        static void swapRecords(const char* filename, int pos1, int pos2)
         {
             Record a, b;
 

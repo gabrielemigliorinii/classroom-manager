@@ -5,20 +5,20 @@ class Person
 {
 	protected:
 
-		char* name;
-		char* surname;
+		char name[50];
+		char surname[50];
         static char* DEFAULT_NAME;
         static char* DEFAULT_SURNAME;
 
 	public:
 
 		Person();
-		Person(char[], char[]);
+		Person(char*, char*);
 		char* getName();
 		char* getSurname();
 		char* getNameSurname();
-		bool setName(char[]);
-		bool setSurname(char[]);
+		bool setName(char*);
+		bool setSurname(char*);
         friend bool operator== (Person, Person);
 };
 

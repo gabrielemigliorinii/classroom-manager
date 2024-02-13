@@ -12,7 +12,6 @@ IndexFileRow::IndexFileRow() : key("DEFAULT_KEY"), value(-1) {}
 
 void IndexFileRow::setKey(char* key)
 {
-    this->key = new char[strlen(key)+1];
     strcpy(this->key, key);
 }
 

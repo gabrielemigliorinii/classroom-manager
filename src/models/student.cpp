@@ -5,12 +5,7 @@
 #include <iostream>
 #include <cstring>
 
-char* Student::DEFAULT_EMAIL = "DEFAULT_EMAIL";
-char* Student::DEFAULT_TEL = "DEFAULT_TEL";
-char* Student::DEFAULT_PC = false;
-char* Student::DEFAULT_STAGE = false;
-
-Student::Student() : Person(), tel(Student::DEFAULT_TEL), email(Student::DEFAULT_EMAIL), pc(Student::DEFAULT_PC), stage(Student::DEFAULT_STAGE) {}
+Student::Student() : Person(), tel("DEFAULT_EMAIL"), email("DEFAULT_TEL"), pc(false), stage(false) {}
 
 Student::Student(char name[], char surname[],  char tel[], char email[], bool pc, bool stage) : Person(name, surname) 
 {
@@ -24,7 +19,6 @@ bool Student::setTel(char* tel)
 {
 	if (MyRegex::tel(tel) == true)
     {
-        this->tel = new char[strlen(tel)+1];
 		strcpy(this->tel, tel);
 		return true;
 	}else
@@ -35,7 +29,6 @@ bool Student::setEmail(char* email)
 {
 	if (MyRegex::email(email) == true)
     {
-        this->email = new char[strlen(email)+1];
 		strcpy(this->email,email);
 		return true;
 	}
@@ -70,7 +63,8 @@ void Student::show(int pos)
 void Student::showAttribute(char value[], std::string fieldName)
 {
 	std::cout << "  -> "<<fieldName<<":\t";
-	for (int i=0; i<strlen(value); i++) std::cout << value[i];
+	for (int i=0; i<strlen(value); i++) 
+        std::cout << value[i];
 }
 
 void Student::showAttribute(bool value, std::string fieldName)

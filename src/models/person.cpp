@@ -5,10 +5,7 @@
 #include <string>
 #include <cstring>
 
-char* Person::DEFAULT_NAME = "DEFAULT_NAME";
-char* Person::DEFAULT_SURNAME = "DEFAULT_SURNAME";
-
-Person::Person() : name(Person::DEFAULT_NAME), surname(Person::DEFAULT_SURNAME) {}
+Person::Person() : name("DEF_NAME"), surname("DEF_SURNAME") {}
 
 Person::Person(char name[], char surname[])
 {
@@ -28,22 +25,13 @@ char* Person::getSurname()
 
 char* Person::getNameSurname()
 {
-    size_t name_len = std::strlen(name);
-    size_t surname_len = std::strlen(surname);
-
-    char* namesurname = new char[name_len + surname_len + 1];
-
-    std::strcpy(namesurname, name);
-    std::strcat(namesurname, surname);
-
-	return namesurname;
+    return (char*) ((std::string)getName() + (std::string)getSurname()).c_str();
 }
 
 bool Person::setName(char* name)
 {
     if (MyRegex::name(name))
     {
-        this->name = new char[strlen(name)+1];
         strcpy(this->name, name);
 		return true;
 	}
@@ -54,7 +42,6 @@ bool Person::setSurname(char* surname)
 {
 	if (MyRegex::name(surname))
     {
-        this->surname = new char[strlen(surname)+1];
         strcpy(this->surname, surname);
 		return true;
 	}

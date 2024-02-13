@@ -5,7 +5,7 @@ class IndexFileRow
 {
     private:
 
-		char* key;
+		char key[20];
 		int value;
 
 	public:

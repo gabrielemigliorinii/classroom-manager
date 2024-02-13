@@ -10,7 +10,7 @@ int main (int argc, char* argv[]) {
     const char* STUDENTS_FILENAME;
     const char* INDEX_FILENAME;
     unsigned int MAX_STUDENTS;
-
+    
     if (argc == 4)
     {
         STUDENTS_FILENAME = argv[1];
