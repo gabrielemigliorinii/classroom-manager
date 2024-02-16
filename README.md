@@ -31,8 +31,6 @@ The project uses C++14 features.
 
 ## Build and Run
 
-### Batch
-
 1. Configure the build using CMake:
 
     ```
@@ -50,7 +48,7 @@ The project uses C++14 features.
     ```
     cd build/debug
     batch: main.exe [STUDENTS_FILEPATH] [INDEX_FILEPATH] [MAX_NUMBER_OF_STUDENTS]
-    bash: ./main [STUDENTS_FILEPATH] [INDEX_FILEPATH] [MAX_NUMBER_OF_STUDENTS]
+    bash:  ./main   [STUDENTS_FILEPATH] [INDEX_FILEPATH] [MAX_NUMBER_OF_STUDENTS]
     ```
 
 ## Functionality
